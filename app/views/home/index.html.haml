@@ -1,12 +1,35 @@
-%h1 
-  Home#index
-%p Find me in app/views/home/index.html.erb
 
-= link_to root_path, class: 'btn btn-success' do
-  .fa.fa-flag
-  Homepage
+.jumbotron
+  .display-4
+    What do you want to learn today?
+  
+  .p-4
 
-= link_to courses_path, class: 'btn btn-info' do
-  .fa.fa-book
-  Courses
+  .form-inline.my-2.my-lg-0
+    = form_tag(courses_path, method: :get) do
+      .input-group
+        = text_field_tag :title, params[:title], autocomplete: 'off', placeholder: "Search", class: 'form-control-sm'
+        %span.input-group-append
+          %button.btn.btn-primary.btn-sm{:type => "submit"}
+            %span.fa.fa-search{"aria-hidden" => "true"}
+
+%hr
+%h2
+  Popular course
+.card-columns
+  - @courses.each do |course|
+    = render 'courses/course', course: course
+%hr
+%h2
+  Top rated course
+.card-columns
+  - @courses.each do |course|
+    = render 'courses/course', course: course
+%hr
+%h2
+  Latest course
+.card-columns
+  - @latest_courses.each do |course|
+    = render 'courses/course', course: course
+%hr
 
