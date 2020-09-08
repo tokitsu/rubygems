@@ -5,6 +5,15 @@
   .card-body
     = course.description
   .card-footer
+    .row
+    .fa.fa-globe
+    = course.language
+    .row
+    .fa.fa-signal
+    = course.level
+  .card-footer
+    = number_to_currency(course.price)
+  .card-footer
     .fa.fa-time
     = course.created_at.strftime('%d-%b-%Y')
     .row
